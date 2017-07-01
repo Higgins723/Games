@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header">Games:</h1>
+      <table class="table table-striped">
+          <thead>
+              <th>Name</th>
+              <th>Platform</th>
+              <th>Genre</th>
+          </thead>
+          <tbody>
+              <tr ng-repeat="game in gamesCtrl.favoriteGames">
+                <td>{{game.name}}</td>
+                <td>{{game.platform}}</td>
+                <td>{{game.genre}}</td>
+              </tr>
+          </tbody>
+      </table>
+    </div>
+  </div>
+</div>

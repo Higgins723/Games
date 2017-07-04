@@ -1,21 +1,40 @@
 <div class="container">
-  <div class="row">
-    <div class="col-lg-12">
-      <h1 class="page-header">Games:</h1>
-      <table class="table table-striped">
-          <thead>
-              <th>Name</th>
-              <th>Platform</th>
-              <th>Genre</th>
-          </thead>
-          <tbody>
-              <tr ng-repeat="game in gamesCtrl.favoriteGames">
-                <td>{{game.name}}</td>
-                <td>{{game.platform}}</td>
-                <td>{{game.genre}}</td>
-              </tr>
-          </tbody>
-      </table>
-    </div>
-  </div>
+  <h1>Games</h1>
+  <table class="table table-striped">
+    <thead>
+      <th>Name</th>
+      <th>Platform</th>
+      <th>Genre</th>
+      <th>Action</th>
+    </thead>
+    <tbody>
+      <tr ng-repeat="game in gamesList">
+        <td ng-hide="game.edit">{{game.name}}</td>
+        <td ng-show="game.edit"><input type="text" ng-model="game.name"></td>
+ 
+        <td ng-hide="game.edit">{{game.platform}}</td>
+        <td ng-show="game.edit"><input type="text" ng-model="game.platform"></td>
+ 
+        <td ng-hide="game.edit">{{game.genre}}</td>
+        <td ng-show="game.edit"><input type="text" ng-model="game.genre"></td>
+
+        <td ng-hide="game.edit">
+          <button class="btn btn-success" ng-click="gamesCtrl.toggleEdit($index)">Edit</button>
+          <button class="btn btn-danger" ng-click="gamesCtrl.deleteGame(game)">Delete</button>
+        </td>
+        <td ng-show="game.edit">
+          <button class="btn btn-primary" ng-click="gamesCtrl.saveGame($index)">Save</button>
+          <button class="btn btn-danger" ng-click="gamesCtrl.toggleEdit($index)">Cancel</button>
+        </td>
+      </tr>
+    </tbody>
+    <tr>
+      <td><input type="text" ng-model="gamesCtrl.newGame.name"></td>
+      <td><input type="text" ng-model="gamesCtrl.newGame.platform"></td>
+      <td><input type="text" ng-model="gamesCtrl.newGame.genre"></td>
+      <td>
+        <button class="btn btn-primary" ng-click="gamesCtrl.addNewGame()">Add New</button>
+      </td>
+    </tr>
+  </table>
 </div>

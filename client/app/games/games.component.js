@@ -21,6 +21,8 @@ export class GamesComponent {
       .then(response => {
         this.favoriteGames = response.data;
         this.$scope.gamesList = response.data;
+        this.$scope.originalGames = response.data;
+        this.$scope.filter = 'none';
       });
   }
 
@@ -50,6 +52,27 @@ export class GamesComponent {
     this.$http.put('/api/games/' + this.$scope.gamesList[index]._id, this.$scope.gamesList[index]);
     this.$scope.gamesList[index].edit = false;
     this.$onInit();
+  }
+
+  resetGames() {
+    this.$scope.gamesList = this.$scope.originalGames;
+    this.$scope.filter = 'none';
+  }
+
+  filterByGenre(genre) {
+    this.resetGames();
+    this.$scope.gamesList = this.$scope.gamesList.filter(function(game) {
+      return game.genre === genre;
+    });
+    this.$scope.filter = 'Genre: ' + genre;
+  }
+
+  filterByPlatform(platform) {
+    this.resetGames();
+    this.$scope.gamesList = this.$scope.gamesList.filter(function(game) {
+      return game.platform === platform;
+    });
+    this.$scope.filter = 'Platform: ' + platform;
   }
 }
 

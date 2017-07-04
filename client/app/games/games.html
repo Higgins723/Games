@@ -1,5 +1,7 @@
 <div class="container">
   <h1>Games</h1>
+  <button class="btn btn-primary" ng-click="gamesCtrl.resetGames()">Clear Filter</button>
+  Current Filter: {{filter}}
   <table class="table table-striped">
     <thead>
       <th>Name</th>
@@ -12,10 +14,14 @@
         <td ng-hide="game.edit">{{game.name}}</td>
         <td ng-show="game.edit"><input type="text" ng-model="game.name"></td>
  
-        <td ng-hide="game.edit">{{game.platform}}</td>
+        <td ng-hide="game.edit">
+            <a href="" ng-click="gamesCtrl.filterByPlatform(game.platform)">{{game.platform}}</a>
+        </td>
         <td ng-show="game.edit"><input type="text" ng-model="game.platform"></td>
  
-        <td ng-hide="game.edit">{{game.genre}}</td>
+        <td ng-hide="game.edit">
+            <a href="" ng-click="gamesCtrl.filterByGenre(game.genre)">{{game.genre}}</a>
+        </td>
         <td ng-show="game.edit"><input type="text" ng-model="game.genre"></td>
 
         <td ng-hide="game.edit">
